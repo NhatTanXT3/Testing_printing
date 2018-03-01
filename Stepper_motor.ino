@@ -68,14 +68,14 @@ const long interval_25Hz = 40000;           // interval at which to do 500Hz tas
 #define TASK_END 2
 
 unsigned char layerHeight = 2;// 2 full steps = 8mm/200x2=0.08mm=80um
-unsigned char curringTime = 100;//150; problem of backlight not uniform // 125 periods of 25Hz timer = 125/25=5s
-unsigned char curringTimeBase = 175; //250: 10s
+unsigned char curringTime = 150;//150; problem of backlight not uniform // 125 periods of 25Hz timer = 125/25=5s
+unsigned char curringTimeBase = 250; //250: 10s
 unsigned char numOfLayerBase = 3;
 unsigned char layerCountBase = 0;
 
 unsigned char liquidSettlingTime = 50; // 25 periods = 1s
 unsigned char seperatorHeight = 100; //200 full steps = 8mm
-unsigned char numOfLayer = 70;
+unsigned char numOfLayer = 20;
 unsigned char layerCount = 0;
 
 unsigned char initLayerPos = 2; //tuning manually
@@ -187,7 +187,7 @@ void loop() {
             else
               elevatorPos--;
 
-            Serial.println(elevatorPos);
+//            Serial.println(elevatorPos);
           }
           digitalWrite(STEP, step_stage);
           digitalWrite(led, step_stage);
@@ -246,7 +246,7 @@ void loop() {
         case PRINTING_TASK_CURING:
           switch (print_status.taskStt) {
             case TASK_BEGIN:
-              Serial.println("PRINTING_TASK_CURING begin ");
+              Serial.println("abc");
               print_status.taskStt = TASK_RUN;
               // turn on the light
               digitalWrite(BACKLIGHT, HIGH);
@@ -271,7 +271,7 @@ void loop() {
             case TASK_END:
               print_status.taskStt = TASK_BEGIN;
               print_status.taskID = PRINTING_TASK_SEPARATOR_UP;
-              Serial.println("PRINTING_TASK_CURING end ");
+              Serial.println("PRINTING_TASK_CURING end");
               // turn off the light
               digitalWrite(BACKLIGHT, LOW);
               break;
